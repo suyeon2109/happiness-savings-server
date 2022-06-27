@@ -20,7 +20,7 @@ class HelloControllerTest {
 
     @Test
     void hello() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/hello"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/happy/hello"))
                 .andExpect(status().isOk());
 
     }
