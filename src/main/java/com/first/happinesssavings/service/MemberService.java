@@ -6,13 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 @Service
 public class MemberService {
     @Autowired
     MemberRepository memberRepository;
 
     @Transactional
-    public String save(Member member) {
+    public String save() {
+        Member member = new Member();
+        String memberId = UUID.randomUUID().toString().replaceAll("-", "");
+        member.setMemberId(memberId);
+
         return memberRepository.save(member);
     }
 }

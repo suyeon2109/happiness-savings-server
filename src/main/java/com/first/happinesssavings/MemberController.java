@@ -14,7 +14,7 @@ public class MemberController {
     MemberService memberService;
 
     @PostMapping("/singUp")
-    public String save(Member member) {
-        return memberService.save(member);
+    public String save() {
+        return memberService.save();
     }
 }
