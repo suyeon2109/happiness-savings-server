@@ -21,19 +21,19 @@ public class HappinessService {
         return happinessRepository.save(happiness);
     }
 
-    public Happiness findOne(Long seq){
-        return happinessRepository.findOne(seq);
+    public Happiness findOne(Happiness happiness){
+        return happinessRepository.findOne(happiness);
     }
 
-    public List<Happiness> findAll(){
-        return happinessRepository.findAll();
+    public List<Happiness> findAll(String memberId){
+        return happinessRepository.findAll(memberId);
     }
 
-    public List<Happiness> findByTitle(String title){
-        return happinessRepository.findByTitle(title);
+    public List<Happiness> findByTitle(Happiness happiness){
+        return happinessRepository.findByTitle(happiness);
     }
 
-//    public Long count(){
-//
-//    }
+    public Long count(String memberId){
+        return happinessRepository.count(memberId);
+    }
 }
