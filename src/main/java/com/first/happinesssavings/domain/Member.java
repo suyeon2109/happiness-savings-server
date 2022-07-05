@@ -8,12 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@Getter @Setter
-public class Happiness {
+@Getter
+@Setter
+public class Member {
 
-    @Id @GeneratedValue
-    private Long id;
-    private String title;
-    private String content;
-    private String memberUuid;
+    @Id
+    private String uuid;
 }
