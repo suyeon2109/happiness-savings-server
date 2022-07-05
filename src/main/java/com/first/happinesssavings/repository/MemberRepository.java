@@ -13,7 +13,8 @@ public class MemberRepository {
     private EntityManager em;
 
     public String save(Member member){
-        em.persist(member.getMemberId());
+        System.out.println("member.getMemberId() : " + member.getMemberId());
+        em.persist(member);
         return member.getMemberId();
     }
 }

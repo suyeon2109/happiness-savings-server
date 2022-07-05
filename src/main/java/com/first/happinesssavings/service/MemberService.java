@@ -15,6 +15,7 @@ public class MemberService {
 
     @Transactional
     public String save() {
+        System.out.println("2");
         Member member = new Member();
         String memberId = UUID.randomUUID().toString().replaceAll("-", "");
         member.setMemberId(memberId);
