@@ -12,9 +12,14 @@ public class MemberRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public String save(Member member){
-        System.out.println("member.getMemberId() : " + member.getMemberId());
+    public String signUp(Member member){
         em.persist(member);
-        return member.getMemberId();
+        return member.getUuid();
+    }
+
+    public Long findOne(Member member) {
+        return em.createQuery("select count(m) from Member m where m.uuid=:uuid", Long.class)
+                .setParameter("uuid", member.getUuid())
+                .getSingleResult();
     }
 }

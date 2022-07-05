@@ -12,7 +12,6 @@ import javax.persistence.Id;
 @Setter
 public class Member {
 
-    @Id @GeneratedValue
-    private Long id;
-    private String memberId;
+    @Id
+    private String uuid;
 }
