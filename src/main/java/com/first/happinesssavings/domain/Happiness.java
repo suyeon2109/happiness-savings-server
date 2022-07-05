@@ -15,5 +15,5 @@ public class Happiness {
     private Long id;
     private String title;
     private String content;
-    private String memberId;
+    private String memberUuid;
 }

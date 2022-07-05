@@ -2,24 +2,29 @@ package com.first.happinesssavings.service;
 
 import com.first.happinesssavings.domain.Member;
 import com.first.happinesssavings.repository.MemberRepository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.UUID;
 
 @Service
 public class MemberService {
     @Autowired
     MemberRepository memberRepository;
 
+    Logger logger = LoggerFactory.getLogger(MemberService.class);
     @Transactional
-    public String save() {
-        System.out.println("2");
-        Member member = new Member();
-        String memberId = UUID.randomUUID().toString().replaceAll("-", "");
-        member.setMemberId(memberId);
+    public String signUp(Member member) {
+        if(checkDuplication(member)==0L){
+            return memberRepository.signUp(member);
+        } else {
+            return "";
+        }
+    }
 
-        return memberRepository.save(member);
+    public Long checkDuplication(Member member) {
+        return memberRepository.findOne(member);
     }
 }
