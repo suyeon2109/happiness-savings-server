@@ -6,11 +6,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
@@ -27,13 +24,14 @@ class HappinessRepositoryTest {
         Happiness happiness = new Happiness();
         happiness.setTitle("테스트");
         happiness.setContent("내용 테스트");
+        happiness.setMemberId("memberId1");
 
         // when
-        Long seq = happinessRepository.save(happiness);
-        Happiness findOne = happinessRepository.findOne(seq);
+        Long id = happinessRepository.save(happiness);
+        Happiness findOne = happinessRepository.findOne(happiness);
 
         //then
-        Assertions.assertThat(findOne.getSeq()).isEqualTo(happiness.getSeq());
+        Assertions.assertThat(findOne.getId()).isEqualTo(happiness.getId());
         Assertions.assertThat(findOne.getContent()).isEqualTo(happiness.getContent());
     }
 

@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -20,7 +19,7 @@ class HelloControllerTest {
 
     @Test
     void hello() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/happy/hello"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/hello"))
                 .andExpect(status().isOk());
 
     }
