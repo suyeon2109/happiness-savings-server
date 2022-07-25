@@ -39,9 +39,7 @@ public class HappinessService {
     }
 
     public List<Happiness> findByTitle(HappinessFindByTitleDto happinessFindByTitleDto) {
-        ModelMapper mapper = new ModelMapper();
-        Happiness happiness = mapper.map(happinessFindByTitleDto, Happiness.class);
-        return happinessRepository.findByTitle(happiness);
+        return happinessRepository.findByTitle(happinessFindByTitleDto);
     }
 
     public Long count(String memberUuid) {

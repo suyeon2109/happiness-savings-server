@@ -1,6 +1,7 @@
 package com.first.happinesssavings.repository;
 
 import com.first.happinesssavings.domain.Happiness;
+import com.first.happinesssavings.dto.HappinessFindByTitleDto;
 import com.first.happinesssavings.dto.HappinessFindOneDto;
 import org.springframework.stereotype.Repository;
 
@@ -31,10 +32,10 @@ public class HappinessRepository {
                 .getResultList();
     }
 
-    public List<Happiness> findByTitle(Happiness happiness) {
+    public List<Happiness> findByTitle(HappinessFindByTitleDto happinessFindByTitleDto) {
         return em.createQuery("select h from Happiness h where h.title like :title and h.memberUuid=:memberUuid", Happiness.class)
-                .setParameter("title", happiness.getTitle())
-                .setParameter("memberUuid", happiness.getMemberUuid())
+                .setParameter("title", happinessFindByTitleDto.getTitle())
+                .setParameter("memberUuid", happinessFindByTitleDto.getMemberUuid())
                 .getResultList();
     }
     public Long count(String memberUuid){
