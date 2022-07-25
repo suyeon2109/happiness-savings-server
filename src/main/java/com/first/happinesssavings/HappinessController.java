@@ -1,6 +1,7 @@
 package com.first.happinesssavings;
 
 import com.first.happinesssavings.domain.Happiness;
+import com.first.happinesssavings.dto.HappinessDto;
 import com.first.happinesssavings.dto.HappinessFindByTitleDto;
 import com.first.happinesssavings.dto.HappinessFindOneDto;
 import com.first.happinesssavings.service.HappinessService;
@@ -17,8 +18,8 @@ public class HappinessController {
     HappinessService happinessService;
 
     @PostMapping("/write")
-    public Long write(@PathVariable String uuid, Happiness happiness){
-        return happinessService.write(uuid, happiness);
+    public Long write(@PathVariable String uuid, HappinessDto happinessDto){
+        return happinessService.write(uuid, happinessDto);
     }
 
     @GetMapping("/findOne")

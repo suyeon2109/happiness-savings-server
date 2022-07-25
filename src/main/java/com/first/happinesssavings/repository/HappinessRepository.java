@@ -1,6 +1,7 @@
 package com.first.happinesssavings.repository;
 
 import com.first.happinesssavings.domain.Happiness;
+import com.first.happinesssavings.dto.HappinessDto;
 import com.first.happinesssavings.dto.HappinessFindByTitleDto;
 import com.first.happinesssavings.dto.HappinessFindOneDto;
 import org.springframework.stereotype.Repository;
@@ -14,9 +15,9 @@ public class HappinessRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public Long save(Happiness happiness) {
-        em.persist(happiness);
-        return happiness.getId();
+    public Long save(HappinessDto happinessDto) {
+        em.persist(happinessDto);
+        return happinessDto.getId();
     }
 
     public Happiness findOne(HappinessFindOneDto happinessFindOneDto) {
