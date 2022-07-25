@@ -1,8 +1,6 @@
 package com.first.happinesssavings.repository;
 
 import com.first.happinesssavings.domain.Happiness;
-import com.first.happinesssavings.dto.HappinessDto;
-import com.first.happinesssavings.dto.HappinessFindByTitleDto;
 import com.first.happinesssavings.dto.HappinessFindOneDto;
 import org.springframework.stereotype.Repository;
 
@@ -15,9 +13,9 @@ public class HappinessRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public Long save(HappinessDto happinessDto) {
-        em.persist(happinessDto);
-        return happinessDto.getId();
+    public Long save(Happiness happiness) {
+        em.persist(happiness);
+        return happiness.getId();
     }
 
     public Happiness findOne(HappinessFindOneDto happinessFindOneDto) {
@@ -33,10 +31,10 @@ public class HappinessRepository {
                 .getResultList();
     }
 
-    public List<Happiness> findByTitle(HappinessFindByTitleDto happinessFindByTitleDto) {
+    public List<Happiness> findByTitle(Happiness happiness) {
         return em.createQuery("select h from Happiness h where h.title like :title and h.memberUuid=:memberUuid", Happiness.class)
-                .setParameter("title", happinessFindByTitleDto.getTitle())
-                .setParameter("memberUuid", happinessFindByTitleDto.getMemberUuid())
+                .setParameter("title", happiness.getTitle())
+                .setParameter("memberUuid", happiness.getMemberUuid())
                 .getResultList();
     }
     public Long count(String memberUuid){
