@@ -1,6 +1,7 @@
 package com.first.happinesssavings;
 
 import com.first.happinesssavings.domain.Happiness;
+import com.first.happinesssavings.dto.HappinessDto;
 import com.first.happinesssavings.dto.HappinessFindOneDto;
 import com.first.happinesssavings.repository.HappinessRepository;
 import org.assertj.core.api.Assertions;
@@ -22,7 +23,7 @@ class HappinessRepositoryTest {
 //    @Rollback(value = false)
     void testHappiness() {
         // given
-        Happiness happiness = new Happiness();
+        HappinessDto happiness = new HappinessDto();
         happiness.setTitle("테스트");
         happiness.setContent("내용 테스트");
         happiness.setMemberUuid("memberId1");
