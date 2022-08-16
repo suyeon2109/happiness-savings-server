@@ -1,19 +1,19 @@
-package com.first.happinesssavings.domain;
+package com.first.happinesssavings.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
-@Getter @Setter
+@Getter
+@Setter
 @ToString
-public class Happiness {
+public class HappinessDto {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
     private String title;
     private String content;
