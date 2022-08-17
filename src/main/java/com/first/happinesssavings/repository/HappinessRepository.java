@@ -3,6 +3,8 @@ package com.first.happinesssavings.repository;
 import com.first.happinesssavings.domain.Happiness;
 import com.first.happinesssavings.dto.HappinessFindByTitleDto;
 import com.first.happinesssavings.dto.HappinessFindOneDto;
+import com.first.happinesssavings.dto.HappinessIndexAvgRequest;
+import com.first.happinesssavings.dto.HappinessIndexWeeklyAvgResponse;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -43,4 +45,11 @@ public class HappinessRepository {
                 .setParameter("memberUuid", memberUuid)
                 .getSingleResult();
     }
+
+//    public List<HappinessIndexWeeklyAvgResponse> findHappinessIndexAvg(HappinessIndexAvgRequest request){
+//        return em.createQuery("select week(h.date) as week, round(avg(h.happinessIndex),1) as weeklyAvg from Happiness h where year(h.date)=year(:date) and h.memberUuid=:memberUuid", HappinessIndexWeeklyAvgResponse.class)
+//                .setParameter("memberUuid", request.getMemberUuid())
+//                .setParameter("date", request.getDate())
+//                .getResultList();
+//    }
 }
