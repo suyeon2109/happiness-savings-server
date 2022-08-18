@@ -2,6 +2,7 @@ package com.first.happinesssavings.repository;
 
 import com.first.happinesssavings.domain.Happiness;
 import com.first.happinesssavings.dto.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
+@Slf4j
 public class HappinessRepository {
     @PersistenceContext
     private EntityManager em;
@@ -44,21 +46,21 @@ public class HappinessRepository {
     }
 
     public List<HappinessIndexDailyAvgResponse> findDailyAvg(HappinessIndexAvgRequest request){
-        return em.createQuery("select h.date as date, avg(h.happinessIndex) as dailyAvg from Happiness h " +
-                        "where year(h.date)=year(:date) and h.memberUuid=:memberUuid " +
-                        "group by h.date order by h.date desc", HappinessIndexDailyAvgResponse.class)
+        return em.createQuery("select h.date as lastTenDays, avg(h.happinessIndex) as dailyAvg from Happiness h " +
+                        "where year(h.date)=year(:nowDate) and h.memberUuid=:memberUuid " +
+                        "group by h.date order by h.date desc")
                 .setParameter("memberUuid", request.getMemberUuid())
-                .setParameter("date", request.getDate())
+                .setParameter("nowDate", request.getNowDate())
                 .setMaxResults(10)
                 .getResultList();
     }
 
     public List<HappinessIndexMonthlyAvgResponse> findMonthlyAvg(HappinessIndexAvgRequest request){
-        return em.createQuery("select month(h.date) as date, avg(h.happinessIndex) as monthlyAvg from Happiness h " +
-                        "where year(h.date)=year(:date) and h.memberUuid=:memberUuid " +
-                        "group by month(h.date)", HappinessIndexMonthlyAvgResponse.class)
+        return em.createQuery("select month(h.date) as monthNum, avg(h.happinessIndex) as monthlyAvg from Happiness h " +
+                        "where year(h.date)=year(:nowDate) and h.memberUuid=:memberUuid " +
+                        "group by month(h.date)")
                 .setParameter("memberUuid", request.getMemberUuid())
-                .setParameter("date", request.getDate())
+                .setParameter("nowDate", request.getNowDate())
                 .setMaxResults(12)
                 .getResultList();
     }

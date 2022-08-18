@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 @ToString
 public class HappinessIndexAvgRequest {
     private String memberUuid;
-    private LocalDateTime date;
+    private LocalDateTime nowDate;
 
-    public HappinessIndexAvgRequest(String memberUuid, LocalDateTime date) {
+    public HappinessIndexAvgRequest(String memberUuid, LocalDateTime nowDate) {
         this.memberUuid = memberUuid;
-        this.date = date;
+        this.nowDate = nowDate;
     }
 }

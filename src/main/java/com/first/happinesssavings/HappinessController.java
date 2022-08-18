@@ -3,13 +3,16 @@ package com.first.happinesssavings;
 import com.first.happinesssavings.domain.Happiness;
 import com.first.happinesssavings.dto.*;
 import com.first.happinesssavings.service.HappinessService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
 @RequestMapping("/members/{uuid}/happiness")
+@Slf4j
 public class HappinessController {
 
     @Autowired
@@ -43,12 +46,18 @@ public class HappinessController {
     }
 
     @GetMapping("/findDailyAvg")
-    public List<HappinessIndexDailyAvgResponse> findDailyAvg(HappinessIndexAvgRequest request){
+    public List<HappinessIndexDailyAvgResponse> findDailyAvg(@PathVariable String uuid){
+        LocalDateTime nowDate = LocalDateTime.now();
+        HappinessIndexAvgRequest request = new HappinessIndexAvgRequest(uuid, nowDate);
+        List<HappinessIndexDailyAvgResponse> response = happinessService.findDailyAvg(request);
         return happinessService.findDailyAvg(request);
     }
 
     @GetMapping("/findMonthlyAvg")
-    public List<HappinessIndexMonthlyAvgResponse> findMonthlyAvg(HappinessIndexAvgRequest request){
+    public List<HappinessIndexMonthlyAvgResponse> findMonthlyAvg(@PathVariable String uuid){
+        LocalDateTime nowDate = LocalDateTime.now();
+        HappinessIndexAvgRequest request = new HappinessIndexAvgRequest(uuid, nowDate);
+        List<HappinessIndexMonthlyAvgResponse> response = happinessService.findMonthlyAvg(request);
         return happinessService.findMonthlyAvg(request);
     }
 }
