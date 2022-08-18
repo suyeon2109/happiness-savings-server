@@ -1,9 +1,7 @@
 package com.first.happinesssavings.service;
 
 import com.first.happinesssavings.domain.Happiness;
-import com.first.happinesssavings.dto.HappinessDto;
-import com.first.happinesssavings.dto.HappinessFindByTitleDto;
-import com.first.happinesssavings.dto.HappinessFindOneDto;
+import com.first.happinesssavings.dto.*;
 import com.first.happinesssavings.repository.HappinessRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -45,4 +43,13 @@ public class HappinessService {
     public Long count(String memberUuid) {
         return happinessRepository.count(memberUuid);
     }
+
+    public List<HappinessIndexDailyAvgResponse> findDailyAvg(HappinessIndexAvgRequest request){
+        return happinessRepository.findDailyAvg(request);
+    }
+
+    public List<HappinessIndexMonthlyAvgResponse> findMonthlyAvg(HappinessIndexAvgRequest request){
+        return happinessRepository.findMonthlyAvg(request);
+    }
+
 }

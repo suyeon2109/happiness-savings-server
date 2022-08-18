@@ -1,9 +1,7 @@
 package com.first.happinesssavings;
 
 import com.first.happinesssavings.domain.Happiness;
-import com.first.happinesssavings.dto.HappinessDto;
-import com.first.happinesssavings.dto.HappinessFindByTitleDto;
-import com.first.happinesssavings.dto.HappinessFindOneDto;
+import com.first.happinesssavings.dto.*;
 import com.first.happinesssavings.service.HappinessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +40,15 @@ public class HappinessController {
     @GetMapping("/count")
     public Long count(@PathVariable String uuid) {
         return happinessService.count(uuid);
+    }
+
+    @GetMapping("/findDailyAvg")
+    public List<HappinessIndexDailyAvgResponse> findDailyAvg(HappinessIndexAvgRequest request){
+        return happinessService.findDailyAvg(request);
+    }
+
+    @GetMapping("/findMonthlyAvg")
+    public List<HappinessIndexMonthlyAvgResponse> findMonthlyAvg(HappinessIndexAvgRequest request){
+        return happinessService.findMonthlyAvg(request);
     }
 }

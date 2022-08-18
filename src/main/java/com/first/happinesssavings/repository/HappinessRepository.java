@@ -1,10 +1,7 @@
 package com.first.happinesssavings.repository;
 
 import com.first.happinesssavings.domain.Happiness;
-import com.first.happinesssavings.dto.HappinessFindByTitleDto;
-import com.first.happinesssavings.dto.HappinessFindOneDto;
-import com.first.happinesssavings.dto.HappinessIndexAvgRequest;
-import com.first.happinesssavings.dto.HappinessIndexWeeklyAvgResponse;
+import com.first.happinesssavings.dto.*;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -46,10 +43,23 @@ public class HappinessRepository {
                 .getSingleResult();
     }
 
-//    public List<HappinessIndexWeeklyAvgResponse> findHappinessIndexAvg(HappinessIndexAvgRequest request){
-//        return em.createQuery("select week(h.date) as week, round(avg(h.happinessIndex),1) as weeklyAvg from Happiness h where year(h.date)=year(:date) and h.memberUuid=:memberUuid", HappinessIndexWeeklyAvgResponse.class)
-//                .setParameter("memberUuid", request.getMemberUuid())
-//                .setParameter("date", request.getDate())
-//                .getResultList();
-//    }
+    public List<HappinessIndexDailyAvgResponse> findDailyAvg(HappinessIndexAvgRequest request){
+        return em.createQuery("select h.date as date, avg(h.happinessIndex) as dailyAvg from Happiness h " +
+                        "where year(h.date)=year(:date) and h.memberUuid=:memberUuid " +
+                        "group by h.date order by h.date desc", HappinessIndexDailyAvgResponse.class)
+                .setParameter("memberUuid", request.getMemberUuid())
+                .setParameter("date", request.getDate())
+                .setMaxResults(10)
+                .getResultList();
+    }
+
+    public List<HappinessIndexMonthlyAvgResponse> findMonthlyAvg(HappinessIndexAvgRequest request){
+        return em.createQuery("select month(h.date) as date, avg(h.happinessIndex) as monthlyAvg from Happiness h " +
+                        "where year(h.date)=year(:date) and h.memberUuid=:memberUuid " +
+                        "group by month(h.date)", HappinessIndexMonthlyAvgResponse.class)
+                .setParameter("memberUuid", request.getMemberUuid())
+                .setParameter("date", request.getDate())
+                .setMaxResults(12)
+                .getResultList();
+    }
 }
