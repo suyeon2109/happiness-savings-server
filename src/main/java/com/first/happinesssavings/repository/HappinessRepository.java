@@ -46,21 +46,21 @@ public class HappinessRepository {
     }
 
     public List<HappinessIndexDailyAvgResponse> findDailyAvg(HappinessIndexAvgRequest request){
-        return em.createQuery("select h.date as lastTenDays, avg(h.happinessIndex) as dailyAvg from Happiness h " +
-                        "where year(h.date)=year(:nowDate) and h.memberUuid=:memberUuid " +
-                        "group by h.date order by h.date desc")
+        return em.createQuery("select h.createdAt as lastTenDays, avg(h.happinessIndex) as dailyAvg from Happiness h " +
+                        "where year(h.createdAt)=year(:now) and h.memberUuid=:memberUuid " +
+                        "group by h.createdAt order by h.createdAt desc")
                 .setParameter("memberUuid", request.getMemberUuid())
-                .setParameter("nowDate", request.getNowDate())
+                .setParameter("now", request.getNow())
                 .setMaxResults(10)
                 .getResultList();
     }
 
     public List<HappinessIndexMonthlyAvgResponse> findMonthlyAvg(HappinessIndexAvgRequest request){
-        return em.createQuery("select month(h.date) as monthNum, avg(h.happinessIndex) as monthlyAvg from Happiness h " +
-                        "where year(h.date)=year(:nowDate) and h.memberUuid=:memberUuid " +
-                        "group by month(h.date)")
+        return em.createQuery("select month(h.createdAt) as monthNum, avg(h.happinessIndex) as monthlyAvg from Happiness h " +
+                        "where year(h.createdAt)=year(:now) and h.memberUuid=:memberUuid " +
+                        "group by month(h.createdAt)")
                 .setParameter("memberUuid", request.getMemberUuid())
-                .setParameter("nowDate", request.getNowDate())
+                .setParameter("now", request.getNow())
                 .setMaxResults(12)
                 .getResultList();
     }

@@ -19,6 +19,7 @@ public class HappinessDto {
     private String title;
     private String content;
     private int happinessIndex;
-    private LocalDateTime date;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private String memberUuid;
 }
