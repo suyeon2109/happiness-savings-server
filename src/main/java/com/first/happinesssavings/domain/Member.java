@@ -1,17 +1,29 @@
 package com.first.happinesssavings.domain;
 
 import lombok.Getter;
-import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
 public class Member {
-
     @Id
-    private String uuid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long memberId;
+    /**
+     * 사용자 아이디
+     */
+    private String idProviderUserId;
+    /**
+     * 인증제공자
+     */
+    @Enumerated(EnumType.STRING)
+    private IdProviderType idProviderType;
+
+    public static Member of(IdProviderType idProviderType, String idProviderUserId) {
+        Member member = new Member();
+        member.idProviderType = idProviderType;
+        member.idProviderUserId = idProviderUserId;
+        return member;
+    }
 }
