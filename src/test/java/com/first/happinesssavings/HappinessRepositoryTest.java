@@ -14,6 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @SpringBootTest
 @Slf4j
@@ -33,7 +37,8 @@ class HappinessRepositoryTest {
         happinessDto.setContent("내용 테스트");
         happinessDto.setMemberUuid("memberId1");
         happinessDto.setHappinessIndex(50);
-
+        happinessDto.setDate(LocalDateTime.now());
+        log.debug("현재시간 : {}",LocalDateTime.now());
         HappinessFindOneDto happinessFindOneDto = new HappinessFindOneDto("memberId1", 1L);
 
         // when
