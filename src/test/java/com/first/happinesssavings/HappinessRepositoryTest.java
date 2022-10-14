@@ -37,7 +37,7 @@ class HappinessRepositoryTest {
         happinessDto.setContent("내용 테스트");
         happinessDto.setMemberUuid("memberId1");
         happinessDto.setHappinessIndex(50);
-        happinessDto.setDate(LocalDateTime.now());
+//        happinessDto.setDate(LocalDateTime.now());
         log.debug("현재시간 : {}",LocalDateTime.now());
         HappinessFindOneDto happinessFindOneDto = new HappinessFindOneDto("memberId1", 1L);
 
