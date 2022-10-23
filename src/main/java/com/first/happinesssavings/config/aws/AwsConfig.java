@@ -1,4 +1,4 @@
-package com.first.happinesssavings.config;
+package com.first.happinesssavings.config.aws;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentials;
