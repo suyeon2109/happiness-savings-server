@@ -42,6 +42,8 @@ public class HappinessService {
         String imageUrl = fileService.upload(happinessCreateDto.getFile());
         log.info("imageUrl: {}", imageUrl);
 
+        happiness.setImageUrl(imageUrl);
+
         return happinessRepository.save(happiness);
     }
 
