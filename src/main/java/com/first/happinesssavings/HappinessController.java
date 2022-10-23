@@ -19,8 +19,8 @@ public class HappinessController {
     HappinessService happinessService;
 
     @PostMapping("/write")
-    public Long write(@PathVariable String uuid, HappinessDto happinessDto){
-        return happinessService.write(uuid, happinessDto);
+    public Long write(@PathVariable String uuid, HappinessCreateDto happinessCreateDto){
+        return happinessService.write(uuid, happinessCreateDto);
     }
 
     @GetMapping("/findOne")

@@ -32,7 +32,8 @@ dependencies {
     testImplementation(
             'org.assertj:assertj-core:3.23.1'
     )
-    testRuntimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.h2database:h2'
+    implementation "com.amazonaws:aws-java-sdk-s3:$awsSdkVersion"
 }
 
 tasks.named('test') {

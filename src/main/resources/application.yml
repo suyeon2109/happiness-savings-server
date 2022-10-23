@@ -2,3 +2,9 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+happiness:
+  aws:
+    s3:
+      access-key: 'AKIA3DWJE2PLSOOS5DHS'
+      secret-key: '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'
