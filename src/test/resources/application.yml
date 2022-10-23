@@ -1,0 +1,5 @@
+happiness:
+  aws:
+    s3:
+      access-key:
+      secret-key:
