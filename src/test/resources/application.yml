@@ -3,3 +3,13 @@ happiness:
     s3:
       access-key:
       secret-key:
+
+spring:
+  sql:
+    init:
+      mode: never
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
