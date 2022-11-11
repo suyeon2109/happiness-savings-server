@@ -30,7 +30,17 @@ jobs:
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
-    
+
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --build-arg "JAR_FILE=/home/runner/work/happiness-savings-server/happiness-savings-server/build/libs/*.jar" --file Dockerfile --tag my-image-name:$(date +%s)
+
+    - name: Github Action to EC2
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: ${{ secrets.EC2_SSH_PORT }}
+        script: |
+          /home/ec2-user/apps/happiness-savings-api/bin/deploy.sh
