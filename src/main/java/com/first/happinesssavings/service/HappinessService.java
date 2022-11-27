@@ -39,10 +39,13 @@ public class HappinessService {
 
         Happiness happiness = mapper.map(happinessCreateDto, Happiness.class);
 
-        String imageUrl = fileService.upload(happinessCreateDto.getFile());
-        log.info("imageUrl: {}", imageUrl);
+        boolean hasFile = happinessCreateDto.getFile() != null;
+        if (hasFile) {
+            String imageUrl = fileService.upload(happinessCreateDto.getFile());
+            log.info("imageUrl: {}", imageUrl);
 
-        happiness.setImageUrl(imageUrl);
+            happiness.setImageUrl(imageUrl);
+        }
 
         return happinessRepository.save(happiness);
     }
