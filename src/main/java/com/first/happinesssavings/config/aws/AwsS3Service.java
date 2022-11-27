@@ -24,6 +24,9 @@ public class AwsS3Service implements FileService {
 
     @Override
     public String upload(MultipartFile file) {
+        if (file == null) {
+            throw new IllegalArgumentException("'file' must not be null");
+        }
         String fileName = createFileName(file.getOriginalFilename());
         ObjectMetadata objectMetadata = new ObjectMetadata();
         objectMetadata.setContentLength(file.getSize());
